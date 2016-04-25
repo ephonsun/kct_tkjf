@@ -39,10 +39,9 @@ public class AppController extends BaseController {
 	@Resource
 	private CircleService circleService;
 	
+	
 	@Resource
 	private VentureHouseService ventureHouseService;
-	
-	
 	
 	/**
 	 * 融资增信
