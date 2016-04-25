@@ -1,0 +1,28 @@
+/*
+** AMUI样式变更
+*/
+
+/*
+* 下拉框样式
+*/
+label{
+	font-weight: normal !important;
+	float: left;
+	width: 120px;
+	text-align: right;
+	padding-right: 10px;
+	clear: both;
+	margin-top: 5px !important;
+}
+label b{
+	color: red;
+	padding-left: 5px;
+}
+.am-form input[type="number"], .am-form input[type="search"], .am-form input[type="text"], .am-form input[type="password"], .am-form input[type="datetime"], .am-form input[type="datetime-local"], .am-form input[type="date"], .am-form input[type="month"], .am-form input[type="time"], .am-form input[type="week"], .am-form input[type="email"], .am-form input[type="url"], .am-form input[type="tel"], .am-form input[type="color"], .am-form select, .am-form textarea, .am-form-field{
+	padding:0 !important;
+	font-size: 14px !important;
+	line-height: 14px !important;
+}
+select option{
+	padding-left: 10px;
+}

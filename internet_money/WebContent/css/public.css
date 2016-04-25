@@ -1,0 +1,455 @@
+@charset "utf-8";
+/* CSS Document */
+/***
+ * author:5664;
+ * qq:56641989;
+ */
+*{font-size:14px;border:0;margin:0;padding:0;}
+body{font-family:'微软雅黑'; margin:0 auto;min-width:980px;}
+ul{display:block;margin:0;padding:0;list-style:none;}
+li{display:inline;margin:0;padding:0;list-style: none;}
+img{border:0;}
+dl,dt,dd,span{margin:0;padding:0;}
+a,a:focus{text-decoration:none;color:#000;outline:none;}
+a:hover{color:#417eb7;text-decoration:none;}
+.fr{float:right;}
+.fl{float: left}
+.w450{width: 450px !important;}
+.w183{width: 183px !important;}
+.w143{width: 143px !important;}
+.w220{width: 220px !important;}
+.w300{width: 300px !important;}
+.none{display: none;}
+.tk-dis-inline{display: inline !important;}
+.tk-magin-auto{
+	margin: 0 auto;
+}
+.tk-margin-left-200{
+	margin-left: 200px;
+}
+
+
+/*cloud*/
+
+#mainBody {width:100%;position:absolute;z-index:-1;height: 700px;}
+.cloud {position:absolute;top:0px;left:0px;width:100%;height:100%;background:url(../img/cloud.png) no-repeat;z-index:1;opacity:0.5;}
+#cloud2 {z-index:2;}
+/*
+*登录页
+*/
+.login-body{
+	background: #2882b5;
+}
+.login-top{
+	width: 100%;
+	height: 47px;
+	background-color: #000;
+	opacity: .2;
+	margin-bottom: 140px;
+}
+.login-main{
+	width: 100%;
+	height: 436px;
+}
+.login-logo{
+	background: url(../img/logo.png) no-repeat;
+	width: 343px;
+	height: 64px;
+	margin: 30px auto;	
+}
+.login-panel{
+	background: url(../img/login_panel.png) no-repeat;
+	width: 692px;
+	height: 373px;
+	margin: 0 auto;
+}
+.login-form{
+	position: relative;
+	padding: 80px 0 0 281px;
+	width: 340px;
+}
+.login-form ul li{
+	height: 59px;
+}
+.login-form li span{
+	cursor: pointer;
+	display: inline-block;
+	line-height: 22px;
+	padding-left: 30px;
+	color: #687f92;
+	background: url(../img/checked.png) no-repeat;
+}
+.login-form li span.on{
+	background-position: 0 -22px;
+}
+.login-input{
+	padding-left: 44px;
+	font-weight: bold;
+	height: 43px;
+	line-height: 43px;
+}
+.login_user{
+	background: url(../img/login_user.png) no-repeat;
+}
+.login_pwd{
+	background: url(../img/login_pwd.png) no-repeat;
+}
+.login_verify{
+	background: url(../img/login_verify.png) no-repeat;
+}
+.verify_left{
+	margin-left: -120px;
+}
+.login-code{
+	position: absolute;
+	left: 524px;
+	top: 205px;
+}
+.login_checktip{
+	position: relative;
+	left: 220px;
+	top: -30px;
+}
+.login_submit{
+	border-radius: 3px;
+	background: #3e96c9;
+	width: 343px;
+	font-size: 22px;
+	font-weight: bold;
+	color: #fff;
+	cursor: pointer;
+	line-height: 45px;
+	margin-top: 16px;
+}
+/*.login-form ul li{
+	padding-bottom: 16px;
+}*/
+.login-form ul li label{
+	padding-right: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.login-footer{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	background: #fff;
+	opacity: .3;
+	position: absolute;
+	bottom: 0;
+	color: #000;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+/*
+ top
+*/
+.header_top{
+	background: url(../img/topbg.gif) repeat-x;
+	height: 88px;
+}
+.header_logo{
+	float: left;
+	width: 330px;
+	height: 88px;
+	margin:10px 12px 0 12px;
+	background: url(../img/header_logo.png) no-repeat;
+}
+.header_nav{
+	margin-left: 15px;
+}
+.header_nav ul{
+	height: 88px;
+	width: 600px;
+	float: left;
+}
+.header_nav ul li{
+	float: left;
+	width: 87px;
+	height: 88px;
+	text-align: center;
+	margin-right: 12px;
+}
+.header_nav ul li span{
+	display: block;
+}
+.header_nav ul li img{
+	padding-top: 10px;
+}
+.header_nav ul li a{
+	color: #fff;
+	display: block;
+	/*margin-right: 12px;*/
+}
+.header_nav ul li a:hover{
+	/*background: #47aff1;*/
+	display: block;
+	height: 88px;
+	background: url(../img/navbg.png) no-repeat;
+;}
+.header_nav_li_active{
+	background: url(../img/navbg.png) no-repeat;
+}
+.header_user{
+	float: right;
+	height: 88px;
+	/*background: url(../img/header_right_bg.jpg) no-repeat;*/
+}
+.header_user ul {
+	margin:10px;
+}
+.header_user ul li{
+	padding-right: 8px;
+	padding-left: 8px;
+	background: url(../img/header_split.gif) no-repeat right center;
+}
+.header_user ul li a{
+	color: #fff;
+}
+.header_user_info{
+	background: url(../img/user_gary_bg.png) repeat-x;
+	border-radius: 10px;
+	height: 30px;
+	position: relative;
+	margin-right: 12px;
+}
+.header_user_info i{
+	font-style: normal;
+	padding-left: 25px;
+	margin-left: 12px;
+	color: #ddd;
+	width: 18px;
+	height: 14px;
+	background: url(../img/header_msg.gif)  no-repeat 0 2px;
+}
+.header_user_info b{
+	width: 50px;
+	height: 50px;
+	background: red;
+	padding:2px 8px;
+	border-radius: 6px;
+	color: #ddd;
+	margin-right: 12px;
+}
+.header_user_info span{
+	background: url(../img/user.png) no-repeat 15px 10px;
+	color: #ddd;
+	padding-top: 6px;
+	padding-left: 35px;
+	display: inline-block;
+}
+.left_top{
+	background: url(../img/left_top.gif) repeat-x;
+	height: 40px;
+}
+.left_title span{
+	background: url(../img/left_icon.png) no-repeat 12px center;
+	padding-left: 40px;
+	line-height: 40px;
+	color: #fff;
+}
+.left_slide{
+	width: 187px;
+	height: 1000px;
+	overflow: hidden;
+	border-right:solid 1px #b7d5df;
+	border-bottom: solid 1px #b7d5df;
+}
+
+.left_slide_active{
+	background: url(../img/left_active.png) no-repeat;
+}
+.left_slide dl dt{
+	font-weight: 700;
+	font-size: 14px;
+	background-color: #d4e7f0;
+	padding: 8px; 
+	padding-left: 50px;
+	cursor: pointer;
+	border-bottom: solid 1px #b9cad3;
+}
+.left_slide dd{
+	background-color: #fff;
+	/*padding:8px;*/
+	text-align: center;
+}
+.left_slide ul li{
+	line-height: 30px;
+	text-align: center;
+}
+.left_slide ul li a:hover{
+	background: url(../img/left_active.png) no-repeat;
+	cursor: pointer;
+	color: #fff;
+}
+.left_slide dd a{
+	width: 187px;
+	font-size:14px;
+	display: block;
+}
+
+/*
+面包屑公用样式
+*/
+.public_mbx{
+	background: url(../img/mbx_bg.gif) repeat-x;
+	height: 40px;
+}
+.public_mbx span{
+	float: left;
+	line-height: 40px;
+}
+.public_mbx ul li{
+	line-height: 40px;
+	padding-left: 7px;
+	padding-right: 12px;
+	width: 150px;
+	background: url(../img/mbx_jt.gif)no-repeat right center;
+}
+.public_mbx ul li:last-child{
+	background: none;
+}
+.public_form_body{
+	padding: 10px;
+	overflow: hidden;
+}
+.public_form_title{
+	border-bottom: solid 1px #ddd;
+	line-height: 35px;
+	margin-bottom: 30px;
+}
+.public_form_title span{
+	border-bottom:solid 3px #66C9F3;
+	font-size:14px;
+	font-weight: bold;
+	width: 65px;
+	padding-left: 4px;
+	display: block;
+}
+.public_form_info{
+	width: 720px;
+}
+.public_form_info ul{
+	padding-left: 35px;
+	width: 700px;
+}
+.public_form_info ul li{
+	float: left;
+	margin-bottom: 15px;
+}
+.public_form_info ul li b{
+	color: red;
+	padding-left: 10px;
+}
+.public_form_info li label{
+	width: 90px;
+	float: left;
+	line-height: 30px;
+	text-align: right;
+	margin-right: 12px;
+}
+.public_form_input{
+/*	width:345px; */
+	height:32px; 
+	line-height:32px;
+	border:solid 1px #a7b5bc; 
+    background:url(../img/inputbg.gif) repeat-x; 
+    text-indent:5px;
+    display: inline !important;
+    border-radius: 3px !important;
+}
+.public_form_tarea {
+    border:solid 1px #A7B5BC;
+    /*background: url("../img/inputbg.gif") repeat-x scroll 0% 0%;*/
+    padding: 10px;
+    width: 504px;
+    height: 135px;
+    line-height: 20px;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.public_form_btn{
+	background: #3e97c9;
+	width: 140px;
+	height: 35px;
+	border-radius: 3px;
+	color: #fff;
+	cursor: pointer;
+	display: block;
+}
+
+/*
+*新闻发布
+*/
+.pub_news_body{
+	padding-top:18px;
+}
+
+/*
+**新闻管理table
+*/
+.news_mng_list,.hb_mng_list{
+	min-width: 1200px;
+	padding: 0 15px;
+}
+.news_list_tab,.hb_list_tab{
+	width: 100%;
+}
+.news_list_tab thead th,.hb_list_tab thead th{
+	background: url(../img/table_th.gif) repeat-x;
+	height: 34px;
+	line-height: 34px;
+	border: solid 1px #B6CAD2;
+	text-align: left;
+	text-indent: 2em;
+}
+.news_list_tab tbody tr td,.hb_list_tab tbody tr td{
+	border: solid 1px #ddd;
+	text-indent: 2em;
+	line-height: 34px;
+}
+.news_list_tab tbody tr.odd,.hb_list_tab tbody tr.odd{background:#f5f8fa;}
+.news_list_tab tbody tr:hover,.hb_list_tab tbody tr:hover{background:#e5ebee;}
+
+.search_form{
+	width: 100%;
+}
+.news_mng_search{
+
+}
+.hb_list_tab thead th:nth-child(1){
+	width: 70px;
+}
+/*
+*批量操作按钮样式
+*/
+
+.batch_opera{
+	
+}
+
+

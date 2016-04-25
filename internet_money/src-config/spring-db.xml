@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"  
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+   				http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+				http://www.springframework.org/schema/context 
+				http://www.springframework.org/schema/context/spring-context-3.0.xsd         
+				http://www.springframework.org/schema/tx
+         		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+         		http://www.springframework.org/schema/aop 
+         		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    <context:property-placeholder location="classpath:database.properties"/>
+       
+     <!-- 给web使用的spring文件 --> 
+     <!-- <bean id="DATA_DB" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="DriverClassName" value="com.mysql.jdbc.Driver"></property>
+        
+        <property name="url" value="${url}"></property>
+        <property name="username" value="${username}"></property>
+        <property name="password" value="${password}"></property>
+        
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/tkjfwdb"></property>
+        <property name="username" value="root"></property>  
+        <property name="password" value="q58GK2wp"></property> 
+        
+        配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+ 		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+ 		配置一个连接在池中最小生存的时间，单位是毫秒
+ 		<property name="minEvictableIdleTimeMillis" value="300000" />
+ 		
+        maxActive: 最大连接数量
+		<property name="maxActive" value="50" />
+		initialSize: 初始化连接
+		<property name="initialSize" value="20" />
+		initialSize: 最小连接池数量
+		<property name="minIdle" value="10" />
+     </bean> -->
+     
+     <!-- c3p0连接池配置 -->  
+     <bean id="DATA_DB" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
+     	  <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+     	  
+          <property name="jdbcUrl" value="${url}"/> 
+          <property name="user" value="${username}"/>  
+          <property name="password" value="${password}"/>  
+          
+          <!-- <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/tkjfwdb"></property>
+          <property name="user" value="root"></property>  
+          <property name="password" value="q58GK2wp"></property> -->
+            
+           
+          
+          <!-- 最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0    -->
+          <property name="maxIdleTime" value="60"/>
+          
+          
+          <!-- 连接池中保留的最大连接数。默认值: 15  -->  
+          <property name="maxPoolSize" value="50"/>
+          <!-- 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3 -->  
+          <property name="initialPoolSize" value="20"/>
+          <!-- 连接池中保留的最小连接数，默认为：3 -->  
+          <property name="minPoolSize" value="10"/>
+     </bean>  
+     
+     <!-- C3P0 配置结束 -->
+     
+     <!-- <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+        <property name="dataSource" ref="DATA_DB" />
+     </bean>  -->
+      
+    <!-- <tx:annotation-driven transaction-manager="txManager" /> -->
+     
+     <bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="false" />
+	
+	<bean id = "jdbcTemplate"  class = "org.springframework.jdbc.core.JdbcTemplate">
+			<property name="dataSource" ref="DATA_DB" />
+	</bean>
+	
+	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate"> 
+		<constructor-arg ref="DATA_DB" />
+	</bean>
+     
+     <!-- 配置动态数据源 -->
+	<!-- <bean id="dataSource" class="com.framework.core.utils.RoutingDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="SYSMGMT_DB" value-ref="SYSMGMT_DB"></entry>
+				<entry key="DATA_DB" value-ref="DATA_DB"></entry>
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="DATA_DB"></property>设置默认数据源,以后如果有多数据源的情况，就可以这么做
+	</bean> -->
+       
+     <!-- JDBC事务管理器 --> 
+     <!-- <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource"></property>  
+     </bean> -->
+     
+      
+    
+      
+       
+     <!-- 自动扫描组件，需要把controller去掉，否则影响事务管理 -->  
+     <!-- <context:component-scan base-package="com.aokunsang">  
+        <context:exclude-filter type="regex" expression="com.aokunsang.web.*"/>  
+     </context:component-scan> -->
+         		
+         		
+         		
+         		
+         		
+</beans>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>红包发放页面</title>
+	<!-- css -->
+	<link type="text/css" rel="stylesheet" href="css/public.css">
+	<link type="text/css" rel="stylesheet" href="css/extend.css">
+	<link type="text/css"  rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/amazeui.min.css" />
+	<!-- js -->
+	<script language="javascript" type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/amazeui.min.js"></script>
+	<script language="javascript" type="text/javascript" src="data/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" charset="utf-8" src="data/Ueditor/ueditor.config.js"></script>
+  <script type="text/javascript" charset="utf-8" src="data/Ueditor/ueditor.all.min.js"> </script>
+  <script type="text/javascript" src="js/Validform_v5.3.2.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</head>
+<body>
+	<!-- news start -->
+	<div class="public_mbx">
+		<ul>
+			<span>当前位置：</span>
+			<li><a href="/">首页</a></li>
+			<li><a href="javascript:">红包发放</a></li>
+		</ul>
+	</div>
+	<!-- news end -->
+	<div class="pub_news_body">
+		<div class="am-u-sm-7">
+			<form class="public_form_info am-form" id="pub_hb_form">
+				<div class="am-form-group">
+					<label for="title">姓名</label>
+					<input type="text" class="public_form_input w450" id="name" disabled/>
+				</div>
+				<div class="am-form-group">
+					<label for="instruct">用户名</label>
+					<input type="text" class="public_form_input w450" id="uname" disabled/>
+				</div>
+				<div class="am-form-group">
+					<label for="url">电话</label>
+					<input type="text" class="public_form_input w450" id="mobile" disabled/>
+				</div>
+				<div class="am-form-group">
+					<label>邮箱 </label>
+					<input type="text" class="public_form_input w450" id="email" disabled/>
+       			</div>
+       			<div class="am-form-group">
+					<label>性别 </label>
+					<input type="text" class="public_form_input w450" id="sex" disabled/>
+       			</div>
+       			<div class="am-form-group">
+					<label>红包余额</label>
+					<input type="text" class="public_form_input w300" id="sex" disabled/>
+					<span class="am-padding-left-sm tk-dis-inline"><i class="am-icon-info-circle am-text-warning"></i>（单位：元）</span>
+       			</div>
+       			<div class="am-form-group">
+					<label>红包余额<b>*</b></label>
+					<input type="num" class="public_form_input w300" id="grant" placeholder="请输入发放红包金额"/>
+       			</div>
+					<input type="button" id="pub_news" class="public_form_btn tk-magin-auto tk-margin-left-200" value="发放">
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"  
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+				http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+				http://www.springframework.org/schema/context 
+				http://www.springframework.org/schema/context/spring-context-3.0.xsd         
+				http://www.springframework.org/schema/tx
+         		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+         		http://www.directwebremoting.org/schema/spring-dwr  
+				http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd 
+         		http://www.springframework.org/schema/mvc
+				http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+         		http://www.springframework.org/schema/aop 
+         		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+         		http://www.springframework.org/schema/task   
+        		http://www.springframework.org/schema/task/spring-task-3.0.xsd
+         		">
+    <!-- 定时器 -->
+	<task:annotation-driven/>
+	<context:component-scan base-package="com.framework"/>
+	
+    <!-- DefaultHandlerAdapter   -->
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+ 	<!-- 拦截器 -->  
+  	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+  	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+ 	</bean>
+ 	
+ 	<!-- 数据校验应用到所有控制器 -->
+ 	<mvc:annotation-driven validator="validator" conversion-service="conversion-service" />
+ 	
+ 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass"  value="org.hibernate.validator.HibernateValidator"/>
+        <!--不设置则默认为classpath下的 ValidationMessages.properties -->
+        <property name="validationMessageSource" ref="validatemessageSource"/>
+    </bean>
+    <bean id="conversion-service" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
+    <bean id="validatemessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
+        <property name="basename" value="classpath:validatemessages"/>  
+        <property name="fileEncodings" value="utf-8"/>  
+        <property name="cacheSeconds" value="120"/>  
+    </bean>
+ 	
+ 	<!-- sql防注入拦截器
+	<bean id="sqlInterceptor" class="com.framework.core.utils.SQLInterceptor"/>   -->  
+	
+    <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<!-- <property name="interceptors"> 
+		<list>
+     		<ref bean="sqlInterceptor" /> 
+		</list>
+     	</property>  -->
+    </bean>
+    
+    <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->  
+	<bean id="handlerAdapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	    <!-- 配置一个基于注解的定制的WebBindingInitializer，解决日期转换问题，方法级别的处理器映射 --> 
+	    <property name="cacheSeconds" value="0" />  
+        <!-- 配置一下对json数据的转换 --> 
+	    <property name="messageConverters">    
+		     <list> 
+		     	<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>    
+				<ref bean="mappingJacksonHttpMessageConverter" />
+		     </list>
+		</property> 
+	</bean>
+	
+	<mvc:view-controller path="/manage/top" view-name="manage/top"/>
+ 	
+ 	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">  
+	    <!-- 处理返回的json数据的编码，默认是ISO-88859-1 -->
+	    <property name="supportedMediaTypes">
+	        <list>  
+	            <value>application/json;charset=UTF-8</value>
+	        </list>
+	    </property>  
+	</bean> 
+	
+	<!-- 为SpringContextUtil类配置上下文 -->
+    <bean name="springContext" class="com.framework.core.utils.SpringContextHolder"></bean>
+    
+	<!-- 全局的异常处理 -->
+ 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+	    <property name="defaultErrorView">  
+		 	<value>forward:/error.jsp</value>
+		</property>
+	    <property name="defaultStatusCode">    
+	        <value>500</value>
+	    </property>     
+		<property name="warnLogCategory">    
+	        <value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>  
+	    </property>     
+	</bean>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.framework.core.utils.AuthInterceptor">
+				<property name="excludeUrls">
+					<list>
+						<!-- 下面为正式发布，不用登录才能操作的地址 -->
+						<value>/internet_money/LoginController/checkuser.do</value>
+						<value>/internet_money/LoginController/checkpic.do</value>
+						<value>/internet_money/LoginController/getsms.do</value>
+						<value>/internet_money/LoginController/register.do</value>
+						<value>/internet_money/LoginController/login.do</value>
+						<value>/internet_money/LoginController/resetpassword.do</value>
+						<value>/internet_money/LoginController/loginstate.do</value>
+						<value>/internet_money/LoginController/ceshiIP.do</value>
+						<value>/internet_money/LoginController/redirect.do</value>
+						<value>/internet_money/LoginController/checkcompany.do</value>
+						<value>/internet_money/LoginController/registerCompany.do</value>
+						
+						<value>/internet_money/GovernmentCarController/getgovnews.do</value>
+						<value>/internet_money/GovernmentCarController/getgovnewsdetail.do</value>
+						<value>/internet_money/GovernmentCarController/getgovagent.do</value>
+						<value>/internet_money/GovernmentCarController/getgovagentdetail.do</value>
+						<value>/internet_money/GovernmentCarController/getparknews.do</value>
+						<value>/internet_money/GovernmentCarController/getparknewsdetail.do</value>
+						<value>/internet_money/GovernmentCarController/getrcfwnews.do</value>
+						<value>/internet_money/GovernmentCarController/getrcfwnewsdetail.do</value>
+						<value>/internet_money/GovernmentCarController/getrcfwpolicy.do</value>
+						
+						<value>/internet_money/WaiterCompanyController/getwaiterlist.do</value>
+						<value>/internet_money/WaiterCompanyController/getduangongtags.do</value>
+						<value>/internet_money/WaiterCompanyController/getduangonglist.do</value>
+						<value>/internet_money/WaiterCompanyController/getduangongdetail.do</value>
+						<value>/internet_money/WaiterCompanyController/getduangongselftags.do</value>
+						<value>/internet_money/WaiterCompanyController/getduangongskilltags.do</value>
+						<value>/internet_money/WaiterCompanyController/getduangongapplicationlist.do</value>
+						<value>/internet_money/WaiterCompanyController/getduangongapplicationdetail.do</value>
+						<value>/internet_money/WaiterCompanyController/pubfactorydetail.do</value>
+						<value>/internet_money/WaiterCompanyController/pubduangongapplicationvideo.do</value>
+						<value>/internet_money/WaiterCompanyController/getmanagementcompanylist.do</value>
+						<value>/internet_money/WaiterCompanyController/getmanagementcompanydetail.do</value>
+						<value>/internet_money/WaiterCompanyController/getlegalaffairslist.do</value>
+						<value>/internet_money/WaiterCompanyController/getlegalaffairsdetail.do</value>
+						<value>/internet_money/WaiterCompanyController/getfinancialmanagelist.do</value>
+						<value>/internet_money/WaiterCompanyController/getfinancialmanagedetail.do</value>
+						<value>/internet_money/WaiterCompanyController/getequityassessmentlist.do</value>
+						<value>/internet_money/WaiterCompanyController/getequityassessmentdetail.do</value>
+						<value>/internet_money/WaiterCompanyController/getpatentlist.do</value>
+						<value>/internet_money/WaiterCompanyController/getpatentdetail.do</value>
+						<value>/internet_money/WaiterCompanyController/gethrlist.do</value>
+						<value>/internet_money/WaiterCompanyController/gethrdetail.do</value>
+						
+						<value>/internet_money/CompanyGovController/getconsultlist.do</value>
+						<value>/internet_money/CompanyGovController/getcompanyconsultlog.do</value>
+						<value>/internet_money/CompanyGovController/consultdetail.do</value>
+						
+						
+						<value>/internet_money/VentureHouseController/getmentortags.do</value>
+						<value>/internet_money/VentureHouseController/getmentorlist.do</value>
+						<value>/internet_money/VentureHouseController/getmentordetail.do</value>
+						<value>/internet_money/VentureHouseController/getstartupconsultlist.do</value>
+						<value>/internet_money/VentureHouseController/getstartupconsultdetail.do</value>
+						<value>/internet_money/VentureHouseController/getstartupconsultlog.do</value>
+						<value>/internet_money/VentureHouseController/getmentorcomment.do</value>
+						<value>/internet_money/VentureHouseController/getindustrialbaselist.do</value>
+						<value>/internet_money/VentureHouseController/getindustrialbasedetail.do</value>
+						
+						<value>/internet_money/CircleController/gethottags.do</value>
+						<value>/internet_money/CircleController/getgrouppostlist.do</value>
+						<value>/internet_money/CircleController/getgrouppostdetail.do</value>
+						<value>/internet_money/CircleController/getgrouppostcomment.do</value>
+						
+						<value>/internet_money/MoneyApplyController/loanExceptExcel.do</value>
+						
+						<value>/internet_money/DishonestyExposureController/getdishonestperson.do</value>
+						<value>/internet_money/DishonestyExposureController/getdishonestcorporation.do</value>
+						
+						<value>/internet_money/MyTianYController/getinsuranceapplicationlist.do</value>
+						<value>/internet_money/MyTianYController/jdbcTest.do</value>
+						<value>/internet_money/OtherController/getindustrylist.do</value>
+						
+						<value>/internet_money/WaiterCompanyController/dopost.do</value>
+						
+						<value>/internet_money/EnterpriseCooperationController/search.do</value>
+						<value>/internet_money/EnterpriseCooperationController/gettechlist.do</value>
+						<value>/internet_money/EnterpriseCooperationController/pubtechdetail.do</value>
+						<value>/internet_money/EnterpriseCooperationController/getmateriallist.do</value>
+						<value>/internet_money/EnterpriseCooperationController/pubmaterialdetail.do</value>
+						<value>/internet_money/EnterpriseCooperationController/getcooperationlist.do</value>
+						<value>/internet_money/EnterpriseCooperationController/pubcooperationdetail.do</value>
+						<value>/internet_money/EnterpriseCooperationController/getfinancelist.do</value>
+						<value>/internet_money/EnterpriseCooperationController/pubfinancedetail.do</value>
+						
+						<value>/internet_money/AppController/gethottags.do</value>
+						<value>/internet_money/AppController/getgrouppostlist.do</value>
+						<value>/internet_money/AppController/getgrouppostdetail.do</value>
+						<value>/internet_money/AppController/getgrouppostcomment.do</value>
+						<value>/internet_money/AppController/getmentortags.do</value>
+						<value>/internet_money/AppController/getmentorlist.do</value>
+						<value>/internet_money/AppController/getmentordetail.do</value>
+						
+						<!-- <value>/internet_money/MngLoginController/loginceshi.do</value> -->
+						<value>/internet_money/MngLoginController/checkimage.do</value>
+						<value>/internet_money/MngLoginController/loginref.do</value>
+						<!-- 下面为正式发布，需要登录才能操作的地址
+						<value>/internet_money/LoginController/logout.do</value>
+						<value>/internet_money/VentureHouseController/pubstartupconsultlog.do</value>
+						
+						<value>/internet_money/GovernmentCarController/applygovagent.do</value>
+						
+						<value>/internet_money/MoneyApplyController/applyloan.do</value>
+						<value>/internet_money/MoneyApplyController/applyinsurance.do</value>
+						
+						<value>/internet_money/WaiterCompanyController/pubduangong.do</value>
+						<value>/internet_money/WaiterCompanyController/applyduangong.do</value>
+						<value>/internet_money/WaiterCompanyController/pubduangongapplication.do</value>
+						<value>/internet_money/WaiterCompanyController/inviteduangong.do</value>
+						<value>/internet_money/WaiterCompanyController/pubfactory.do</value>
+						<value>/internet_money/WaiterCompanyController/pubequipment.do</value>
+						<value>/internet_money/WaiterCompanyController/publogistics.do</value>
+						<value>/internet_money/WaiterCompanyController/pubjob.do</value>
+						<value>/internet_money/WaiterCompanyController/pubactivity.do</value>
+						<value>/internet_money/WaiterCompanyController/pubcooperation.do</value>
+						<value>/internet_money/WaiterCompanyController/pubtraining.do</value>
+						<value>/internet_money/WaiterCompanyController/pubaccounting.do</value>
+						<value>/internet_money/WaiterCompanyController/pubstockrights.do</value>
+						<value>/internet_money/WaiterCompanyController/pubcapital.do</value>
+						<value>/internet_money/WaiterCompanyController/pubbill.do</value>
+						<value>/internet_money/WaiterCompanyController/pubregistration.do</value>
+						
+						<value>/internet_money/CompanyGovController/serviceconsult.do</value>
+						
+						<value>/internet_money/VentureHouseController/startupconsult.do</value>
+						
+						<value>/internet_money/VentureHouseController/choosementor.do</value>
+						<value>/internet_money/VentureHouseController/commentmentor.do</value>
+						
+						<value>/internet_money/CircleController/pubgrouppost.do</value> 
+						<value>/internet_money/CircleController/pubgroupcomment.do</value>
+						
+						<value>/internet_money/MyTianYController/gethongbao.do</value>
+						<value>/internet_money/MyTianYController/gethongbaolog.do</value>
+						
+						<value>/internet_money/MyTianYController/getuser.do</value>
+						<value>/internet_money/MyTianYController/setuser.do</value>
+						<value>/internet_money/MyTianYController/getagentapplicationlist.do</value>
+						<value>/internet_money/MyTianYController/getloanapplicationlist.do</value>
+						<value>/internet_money/MyTianYController/getloanapplicationdetail.do</value>
+						<value>/internet_money/MyTianYController/getpublist.do</value>
+						<value>/internet_money/MyTianYController/getpubdetail.do</value>
+						<value>/internet_money/MyTianYController/getconsultlist.do</value>
+						<value>/internet_money/MyTianYController/getconsultdetail.do</value>
+						<value>/internet_money/MyTianYController/getmystartupconsultlist.do</value>
+						<value>/internet_money/MyTianYController/getmystartupconsultdetail.do</value>
+						
+						<value>/internet_money/MyTianYController/getmymentorlist.do</value>
+						
+						<value>/internet_money/SystemController/getmoduleconfig.do</value>
+						<value>/internet_money/SystemController/setmoduleconfig.do</value>
+						<value>/internet_money/SystemController/gethongbaoconfig.do</value>
+						<value>/internet_money/SystemController/sethongbaoconfig.do</value>
+						<value>/internet_money/SystemController/sethongbao.do</value> -->
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
+	<!-- <mvc:mapping path="/test/number.do"/> -->
+        		
+</beans>

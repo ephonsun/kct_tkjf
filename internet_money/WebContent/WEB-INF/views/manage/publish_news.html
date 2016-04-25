@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>新闻发布页面</title>
+	<!-- css -->
+	<link type="text/css" rel="stylesheet" href="css/public.css">
+	<link type="text/css" rel="stylesheet" href="css/extend.css">
+	<link type="text/css"  rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/amazeui.min.css" />
+	<!-- js -->
+	<script language="javascript" type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/amazeui.min.js"></script>
+	<script language="javascript" type="text/javascript" src="data/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" charset="utf-8" src="data/Ueditor/ueditor.config.js"></script>
+  <script type="text/javascript" charset="utf-8" src="data/Ueditor/ueditor.all.min.js"> </script>
+  <script type="text/javascript" src="js/Validform_v5.3.2.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</head>
+<body>
+	<!-- pubNews start-->
+	<!-- news start -->
+	<div class="public_mbx">
+		<ul>
+			<span>当前位置：</span>
+			<li><a href="javascript:">首页</a></li>
+			<li><a href="javascript:">新闻发布</a></li>
+		</ul>
+	</div>
+	<!-- news end -->
+	<div class="pub_news_body">
+		<div class="am-u-sm-7">
+			<form class="public_form_info am-form" id="pub_news_form">
+				<div class="am-form-group">
+					<label for="title">标题<b>*</b></label>
+					<input type="text" class="public_form_input w450" id="title" placeholder="请输入标题" datatype="*"  nullmsg="标题不能为空" /><span class="Validform_checktip tk-dis-inline"></span>
+				</div>
+				<div class="am-form-group">
+					<label for="instruct">简介<b>*</b></label>
+					<input type="text" class="public_form_input w450" id="instruct" minlength="3" placeholder="请输入简介" datatype="*"  nullmsg="简介不能为空"/><div class="Validform_checktip tk-dis-inline"></div>
+				</div>
+				<div class="am-form-group">
+					<label for="url">原文URL<b>*</b></label>
+					<input type="url" class="public_form_input w450" id="url" value="http://" minlength="7" placeholder="请输入URL"  datatype="url"  nullmsg="URL不能为空" /><div class="Validform_checktip tk-dis-inline"></div>
+				</div>
+				<div class="am-form-group">
+					<label for="ssq">区域<b>*</b></label>
+					<select id="province" class="public_form_input w143 fl am-margin-right-sm" onchange="doProvAndCityRelation();" datatype="*" nullmsg="请选择省份">
+						<option id="choosePro" value="">省份</option>
+       				</select>
+       				<select id="citys" class="public_form_input w143 fl am-margin-right-sm" onchange="doCityAndCountyRelation();" datatype="*" nullmsg="请选择地级市" >
+						<option id="chooseCity" value="">地级市</option>
+       				</select>
+       				<select id="county" class="public_form_input w143" datatype="*" nullmsg="请选择市、县级市、县">
+						<option id="chooseCounty" value="">县级市</option>
+       				</select>
+       				<div class="Validform_checktip tk-dis-inline"></div>
+       			</div>
+				<div class="am-form-group">
+					<label for="gov">政府部门<b>*</b></label>
+					<select id="gov" class="public_form_input w220" datatype="*" nullmsg="请选择部门">
+						<option value="">-=请选择=-</option>
+       					<option value="1">组织部(人才办)</option>
+       					<option value="2">发改局</option>
+       					<option value="3">工信局</option>
+       					<option value="4">科技局</option>
+       					<option value="5">财政局</option>
+       					<option value="6">商务旅游</option>
+       					<option value="7">市场监督</option>
+       					<option value="8">农村农业</option>
+       				</select>
+       				<div class="Validform_checktip tk-dis-inline"></div>
+       			</div>
+       			<div class="am-form-group">
+					<label for="pub_time">发布时间<b>*</b></label>
+					<input type="text" class="public_form_input w220" id="pub_time" minlength="3" placeholder="请输入发布时间" onClick="WdatePicker()" datatype="date" nullmsg="请输入时间"/>
+					<div class="Validform_checktip tk-dis-inline"></div>
+				</div>
+				<div class="am-form-group">
+					<label for="editor">详细内容<b>*</b></label>
+					<script id="editor" type="text/plain" style="width:1024px;height:300px;margin-left:120px"></script>
+				</div>
+					
+					<input type="button" id="pub_news" class="public_form_btn tk-magin-auto tk-margin-left-200" value="确认保存">
+			</form>
+		</div>
+	</div>
+	<!-- pubNews end  -->
+	<!--js初始化-->
+	<script type="text/javascript">
+	//实例化Validform
+	$(function(){
+				
+			$(".public_form_info").Validform({
+				tiptype:2
+			});
+		})
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+    </script>		
+</body>
+</html>

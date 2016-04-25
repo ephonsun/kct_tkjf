@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>失信曝光发布</title>
+	<!-- css -->
+	<link type="text/css" rel="stylesheet" href="css/public.css">
+	<link type="text/css" rel="stylesheet" href="css/extend.css">
+	<link type="text/css"  rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/amazeui.min.css" />
+	<!-- js -->
+	<script language="javascript" type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/amazeui.min.js"></script>
+	<script language="javascript" type="text/javascript" src="data/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" charset="utf-8" src="data/Ueditor/ueditor.config.js"></script>
+  <script type="text/javascript" charset="utf-8" src="data/Ueditor/ueditor.all.min.js"> </script>
+  <script type="text/javascript" src="js/Validform_v5.3.2.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</head>
+<body>
+	<!-- 发布失信曝光 start-->
+	<!-- news start -->
+	<div class="public_mbx">
+		<ul>
+			<span>当前位置：</span>
+			<li><a href="javascript:">首页</a></li>
+			<li><a href="javascript:">失信曝光审核</a></li>
+		</ul>
+	</div>
+	<!-- news end -->
+	<div class="pub_news_body">
+		<div class="am-u-sm-7">
+			<form class="public_form_info am-form" id="pub_news_form">
+				<div class="am-form-group">
+					<label for="name">姓名</label>
+					<input type="text" class="public_form_input w450" id="name" disabled/>
+				</div>
+				<div class="am-form-group">
+					<label for="sex">性别</label>
+					<select id="sex" class="public_form_input w220" disabled>
+						<!-- 男女 -->
+       				</select>
+				</div>
+				<div class="am-form-group">
+					<label for="age">年龄</label>
+					<input type="text" class="public_form_input w450" id="age" disabled/>
+       			</div>
+       			<div class="am-form-group">
+					<label for="identity">身份证号</label>
+					<input type="text" class="public_form_input w450" id="identity"disabled />
+				</div>
+				<div class="am-form-group">
+					<label for="ssq">区域</label>
+					<select id="province" class="public_form_input w143 fl am-margin-right-sm" disabled>
+						<!-- 省份 -->
+       				</select>
+       				<select id="citys" class="public_form_input w143 fl am-margin-right-sm" disabled>
+						<!-- 地级市-->
+       				</select>
+       				<select id="county" class="public_form_input w143" disabled>
+						<!-- 县级市 -->
+       				</select>
+       			</div>
+				<div class="am-form-group">
+					<label for="company">单位</label>
+					<input type="text" class="public_form_input w450" id="company" disabled/>
+       			</div>
+       			<div class="am-form-group">
+					<label for="money">欠款金额</label>
+					<input type="text" class="public_form_input w300" id="money" disabled/>
+					<span class="am-padding-left-sm tk-dis-inline"><i class="am-icon-info-circle am-text-warning"></i>（单位：元）</span>
+					<div class="Validform_checktip tk-dis-inline"></div>
+				</div>
+				<div class="am-form-group">
+					<label for="publisher">发布方</label>
+					<input type="text" class="public_form_input w450" id="publisher"disabled/>
+					<div class="Validform_checktip tk-dis-inline"></div>
+				</div>
+				<div class="am-form-group">
+					<label for="state">当前状态</label>
+					<div><i class="am-icon-check-circle am-icon-sm am-text-success am-padding-right-sm"></i>已审核</div>
+				</div>
+				<div class="am-form-group">
+					<label for="examine">审核意见<b>*</b></label>
+					<select id="examine" class="public_form_input w143 fl am-margin-right-sm">
+						<option value="">-=请选择=-</option>
+						<option value="0">未通过</option>
+						<option value="1">通过</option>
+       				</select>
+       			</div>
+       				<input type="button" id="pub_news" class="public_form_btn tk-magin-auto tk-margin-left-200" value="确认保存">
+			</form>
+		</div>
+	</div>
+	<!-- 失信曝光审核 end  -->
+	<!--js初始化-->
+	<script type="text/javascript">
+	//实例化Validform
+	$(function(){
+				
+			$(".public_form_info").Validform({
+				tiptype:2
+			});
+		})
+    </script>		
+</body>
+</html>
