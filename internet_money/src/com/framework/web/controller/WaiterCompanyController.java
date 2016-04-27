@@ -1528,10 +1528,14 @@ public class WaiterCompanyController extends BaseController {
 		Map<String, Object> args = new HashMap<>();
 		Map<String, Object> map = new HashMap<>();
 		String page = request.getParameter("page");
+		String type = request.getParameter("type");
+		String district = request.getParameter("district");
 		if ("".equals(page) || page == null) {// 没有page默认给 1
 			page = "1";
 		}
 		args.put("page", page);
+		args.put("type", type);
+		args.put("district", district);
 		int num = 10;// 每页条数
 		args.put("num", num);
 		String startNum = OtherUtils.format_limit(page, num);
@@ -1657,10 +1661,14 @@ public class WaiterCompanyController extends BaseController {
 		Map<String, Object> args = new HashMap<>();
 		Map<String, Object> map = new HashMap<>();
 		String page = request.getParameter("page");
+		String type = request.getParameter("type");
+		String district = request.getParameter("district");
 		if ("".equals(page) || page == null) {// 没有page默认给 1
 			page = "1";
 		}
 		args.put("page", page);
+		args.put("type", type);
+		args.put("district", district);
 		int num = 10;// 每页条数
 		args.put("num", num);
 		String startNum = OtherUtils.format_limit(page, num);
@@ -1784,10 +1792,14 @@ public class WaiterCompanyController extends BaseController {
 		Map<String, Object> args = new HashMap<>();
 		Map<String, Object> map = new HashMap<>();
 		String page = request.getParameter("page");
+		String type = request.getParameter("type");
+		String district = request.getParameter("district");
 		if ("".equals(page) || page == null) {// 没有page默认给 1
 			page = "1";
 		}
 		args.put("page", page);
+		args.put("type", type);
+		args.put("district", district);
 		int num = 10;// 每页条数
 		args.put("num", num);
 		String startNum = OtherUtils.format_limit(page, num);
@@ -1912,10 +1924,14 @@ public class WaiterCompanyController extends BaseController {
 		Map<String, Object> args = new HashMap<>();
 		Map<String, Object> map = new HashMap<>();
 		String page = request.getParameter("page");
+		String type = request.getParameter("type");
+		String district = request.getParameter("district");
 		if ("".equals(page) || page == null) {// 没有page默认给 1
 			page = "1";
 		}
 		args.put("page", page);
+		args.put("type", type);
+		args.put("district", district);
 		int num = 10;// 每页条数
 		args.put("num", num);
 		String startNum = OtherUtils.format_limit(page, num);
@@ -2040,10 +2056,14 @@ public class WaiterCompanyController extends BaseController {
 		Map<String, Object> args = new HashMap<>();
 		Map<String, Object> map = new HashMap<>();
 		String page = request.getParameter("page");
+		String type = request.getParameter("type");
+		String district = request.getParameter("district");
 		if ("".equals(page) || page == null) {// 没有page默认给 1
 			page = "1";
 		}
 		args.put("page", page);
+		args.put("type", type);
+		args.put("district", district);
 		int num = 10;// 每页条数
 		args.put("num", num);
 		String startNum = OtherUtils.format_limit(page, num);
@@ -2167,10 +2187,14 @@ public class WaiterCompanyController extends BaseController {
 		Map<String, Object> args = new HashMap<>();
 		Map<String, Object> map = new HashMap<>();
 		String page = request.getParameter("page");
+		String type = request.getParameter("type");
+		String district = request.getParameter("district");
 		if ("".equals(page) || page == null) {// 没有page默认给 1
 			page = "1";
 		}
 		args.put("page", page);
+		args.put("type", type);
+		args.put("district", district);
 		int num = 10;// 每页条数
 		args.put("num", num);
 		String startNum = OtherUtils.format_limit(page, num);
