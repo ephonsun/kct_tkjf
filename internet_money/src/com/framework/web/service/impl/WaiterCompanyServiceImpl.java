@@ -768,9 +768,17 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 	public List<?> getmanagementcompanylist(Map<String, Object> args) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
-		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_management_company c ");//
-		sql.append(" where c.type = "+args.get("type")+" ");
-		sql.append("   and c.district = "+args.get("district")+" ");
+		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_management_company c ");
+		if("0".equals(args.get("type"))){
+			sql.append(" where c.type like '%%' ");
+		}else {
+			sql.append(" where c.type = "+args.get("type")+" ");
+		}
+		if("0".equals(args.get("district"))){
+			sql.append(" and c.district like '%%' ");
+		}else {
+			sql.append(" and c.district = "+args.get("district")+" ");
+		}
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -809,8 +817,16 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
 		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_legalaffairs_company c ");
-		sql.append(" where c.type = "+args.get("type")+" ");
-		sql.append("   and c.district = "+args.get("district")+" ");
+		if("0".equals(args.get("type"))){
+			sql.append(" where c.type like '%%' ");
+		}else {
+			sql.append(" where c.type = "+args.get("type")+" ");
+		}
+		if("0".equals(args.get("district"))){
+			sql.append(" and c.district like '%%' ");
+		}else {
+			sql.append(" and c.district = "+args.get("district")+" ");
+		}
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -849,8 +865,16 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
 		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_financialmanage_company c ");
-		sql.append(" where c.type = "+args.get("type")+" ");
-		sql.append("   and c.district = "+args.get("district")+" ");
+		if("0".equals(args.get("type"))){
+			sql.append(" where c.type like '%%' ");
+		}else {
+			sql.append(" where c.type = "+args.get("type")+" ");
+		}
+		if("0".equals(args.get("district"))){
+			sql.append(" and c.district like '%%' ");
+		}else {
+			sql.append(" and c.district = "+args.get("district")+" ");
+		}
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -889,8 +913,16 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
 		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_equityassessment_company c ");
-		sql.append(" where c.type = "+args.get("type")+" ");
-		sql.append("   and c.district = "+args.get("district")+" ");
+		if("0".equals(args.get("type"))){
+			sql.append(" where c.type like '%%' ");
+		}else {
+			sql.append(" where c.type = "+args.get("type")+" ");
+		}
+		if("0".equals(args.get("district"))){
+			sql.append(" and c.district like '%%' ");
+		}else {
+			sql.append(" and c.district = "+args.get("district")+" ");
+		}
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -929,8 +961,16 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
 		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_patent_company c ");
-		sql.append(" where c.type = "+args.get("type")+" ");
-		sql.append("   and c.district = "+args.get("district")+" ");
+		if("0".equals(args.get("type"))){
+			sql.append(" where c.type like '%%' ");
+		}else {
+			sql.append(" where c.type = "+args.get("type")+" ");
+		}
+		if("0".equals(args.get("district"))){
+			sql.append(" and c.district like '%%' ");
+		}else {
+			sql.append(" and c.district = "+args.get("district")+" ");
+		}
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -969,8 +1009,16 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
 		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_hr_company c ");
-		sql.append(" where c.type = "+args.get("type")+" ");
-		sql.append("   and c.district = "+args.get("district")+" ");
+		if("0".equals(args.get("type"))){
+			sql.append(" where c.type like '%%' ");
+		}else {
+			sql.append(" where c.type = "+args.get("type")+" ");
+		}
+		if("0".equals(args.get("district"))){
+			sql.append(" and c.district like '%%' ");
+		}else {
+			sql.append(" and c.district = "+args.get("district")+" ");
+		}
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
