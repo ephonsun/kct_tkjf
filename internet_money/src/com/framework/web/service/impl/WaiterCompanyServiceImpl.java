@@ -768,7 +768,9 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 	public List<?> getmanagementcompanylist(Map<String, Object> args) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
-		sql.append(" select c.id,c.name,c.honor,c.mainbusiness from e_management_company c ");
+		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_management_company c ");//
+		sql.append(" where c.type = "+args.get("type")+" ");
+		sql.append("   and c.district = "+args.get("district")+" ");
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -792,6 +794,8 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		sql.append(" c.servicearea, ");
 		sql.append(" c.otherbusiness, ");
 		sql.append(" c.leading, ");
+		sql.append(" c.district, ");
+		sql.append(" c.type, ");
 		sql.append(" c.staff, ");
 		sql.append(" c.mobile, ");
 		sql.append(" c.address ");
@@ -804,7 +808,9 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 	public List<?> getlegalaffairslist(Map<String, Object> args) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
-		sql.append(" select c.id,c.name,c.honor,c.mainbusiness from e_legalaffairs_company c ");
+		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_legalaffairs_company c ");
+		sql.append(" where c.type = "+args.get("type")+" ");
+		sql.append("   and c.district = "+args.get("district")+" ");
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -828,6 +834,8 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		sql.append(" c.servicearea, ");
 		sql.append(" c.otherbusiness, ");
 		sql.append(" c.leading, ");
+		sql.append(" c.district, ");
+		sql.append(" c.type, ");
 		sql.append(" c.staff, ");
 		sql.append(" c.mobile, ");
 		sql.append(" c.address ");
@@ -840,7 +848,9 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 	public List<?> getfinancialmanagelist(Map<String, Object> args) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
-		sql.append(" select c.id,c.name,c.honor,c.mainbusiness from e_financialmanage_company c ");
+		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_financialmanage_company c ");
+		sql.append(" where c.type = "+args.get("type")+" ");
+		sql.append("   and c.district = "+args.get("district")+" ");
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -864,10 +874,12 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		sql.append(" c.servicearea, ");
 		sql.append(" c.otherbusiness, ");
 		sql.append(" c.leading, ");
+		sql.append(" c.district, ");
+		sql.append(" c.type, ");
 		sql.append(" c.staff, ");
 		sql.append(" c.mobile, ");
 		sql.append(" c.address ");
-		sql.append("  from e_financialmanage_company c  ");
+		sql.append("  from e_legalaffairs_company c  ");
 		sql.append(" where c.id = "+args.get("id")+" ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -876,7 +888,9 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 	public List<?> getequityassessmentlist(Map<String, Object> args) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
-		sql.append(" select c.id,c.name,c.honor,c.mainbusiness from e_equityassessment_company c ");
+		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_equityassessment_company c ");
+		sql.append(" where c.type = "+args.get("type")+" ");
+		sql.append("   and c.district = "+args.get("district")+" ");
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -900,10 +914,12 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		sql.append(" c.servicearea, ");
 		sql.append(" c.otherbusiness, ");
 		sql.append(" c.leading, ");
+		sql.append(" c.district, ");
+		sql.append(" c.type, ");
 		sql.append(" c.staff, ");
 		sql.append(" c.mobile, ");
 		sql.append(" c.address ");
-		sql.append("  from e_equityassessment_company c  ");
+		sql.append("  from e_legalaffairs_company c  ");
 		sql.append(" where c.id = "+args.get("id")+" ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -912,7 +928,9 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 	public List<?> getpatentlist(Map<String, Object> args) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
-		sql.append(" select c.id,c.name,c.honor,c.mainbusiness from e_patent_company c ");
+		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_patent_company c ");
+		sql.append(" where c.type = "+args.get("type")+" ");
+		sql.append("   and c.district = "+args.get("district")+" ");
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -936,10 +954,12 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		sql.append(" c.servicearea, ");
 		sql.append(" c.otherbusiness, ");
 		sql.append(" c.leading, ");
+		sql.append(" c.district, ");
+		sql.append(" c.type, ");
 		sql.append(" c.staff, ");
 		sql.append(" c.mobile, ");
 		sql.append(" c.address ");
-		sql.append("  from e_patent_company c  ");
+		sql.append("  from e_legalaffairs_company c  ");
 		sql.append(" where c.id = "+args.get("id")+" ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -948,7 +968,9 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 	public List<?> gethrlist(Map<String, Object> args) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select * from ( ");
-		sql.append(" select c.id,c.name,c.honor,c.mainbusiness from e_hr_company c ");
+		sql.append(" select c.id,c.name,c.honor,c.mainbusinesslist,c.district,c.type from e_hr_company c ");
+		sql.append(" where c.type = "+args.get("type")+" ");
+		sql.append("   and c.district = "+args.get("district")+" ");
 		sql.append(" ORDER BY c.id DESC LIMIT " + args.get("startNum") + "," + args.get("num") + " ) a ");
 		return this.getQueryList(sql.toString());
 	}
@@ -972,10 +994,12 @@ public class WaiterCompanyServiceImpl extends BaseServiceImpl implements WaiterC
 		sql.append(" c.servicearea, ");
 		sql.append(" c.otherbusiness, ");
 		sql.append(" c.leading, ");
+		sql.append(" c.district, ");
+		sql.append(" c.type, ");
 		sql.append(" c.staff, ");
 		sql.append(" c.mobile, ");
 		sql.append(" c.address ");
-		sql.append("  from e_hr_company c  ");
+		sql.append("  from e_legalaffairs_company c  ");
 		sql.append(" where c.id = "+args.get("id")+" ) a ");
 		return this.getQueryList(sql.toString());
 	}
